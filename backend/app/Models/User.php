@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\FavouriteListController;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,7 +57,13 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return array
      */
-    public function getJWTCustomClaims() {
+    public function getJWTCustomClaims() 
+    {
         return [];
-    }    
+    }   
+    
+    public function favourites() 
+    {
+        return $this->hasMany(FavouriteList::class);
+    }  
 }
