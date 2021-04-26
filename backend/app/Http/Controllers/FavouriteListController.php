@@ -74,7 +74,7 @@ class FavouriteListController extends Controller
         if($favouriteList->user_id === $this->user->id) {
             return response($favouriteList);
         }
-        return 'Sorry, you do not have access to this list';
+        return response(['message' => 'Sorry, you do not have access to this list']);
             
     }
 
@@ -98,7 +98,14 @@ class FavouriteListController extends Controller
      */
     public function update(Request $request, FavouriteList $favouriteList)
     {
-        //
+        $favouriteList->name = $request->name; 
+
+        if($favouriteList->save()) {
+            return response(['message' => 'Success'], 201);
+        } else {
+            return response(['message' => 'Failed to update']);
+        }
+ 
     }
 
     /**
