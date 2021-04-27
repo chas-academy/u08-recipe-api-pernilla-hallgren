@@ -45,7 +45,22 @@ class FavouriteListItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $favouriteListItem = new FavouriteListItem;
+        $favouriteListItem->recipe_detail_id = $request->recipe_detail_id; 
+        $favouriteListItem->recipe_image = $request->recipe_image; 
+        $favouriteListItem->recipe_label = $request->recipe_label; 
+        $favouriteListItem->recipe_ingredientlines = $request->recipe_ingredientLines; 
+        $favouriteListItem->favourite_list_id = $request->favourite_list_id; 
+
+        
+
+        if ($favouriteListItem->save()) {
+            return response([
+                'message' => 'Added to favourite list']);  
+        } else {
+            return response(['message' => 'Sorry can not add to favourite list']);
+        }
+               
     }
 
     /**
@@ -56,7 +71,9 @@ class FavouriteListItemController extends Controller
      */
     public function show(FavouriteListItem $favouriteListItem)
     {
-        //
+        
+
+
     }
 
     /**
@@ -90,6 +107,7 @@ class FavouriteListItemController extends Controller
      */
     public function destroy(FavouriteListItem $favouriteListItem)
     {
-        //
+        
+        $favouriteListItem->delete();
     }
 }

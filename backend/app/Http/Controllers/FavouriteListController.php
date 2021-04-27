@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\FavouriteList;
+use App\Models\FavouriteListItem;
 use Illuminate\Http\Request;
 
 class FavouriteListController extends Controller
 {
     protected $user;
+
 
     public function __construct() 
     {
@@ -71,11 +73,14 @@ class FavouriteListController extends Controller
      */
     public function show(FavouriteList $favouriteList)
     {
+        // $favouriteList->favouriteListItem()->getAll();
+
         if($favouriteList->user_id === $this->user->id) {
-            return response($favouriteList);
+            return response([
+                'favouriteList' => $favouriteList, 
+                'favouriteListItems' => $favouriteList->favouriteListItem()->get()]);
         }
-        return response(['message' => 'Sorry, you do not have access to this list']);
-            
+        return response(['message' => 'Sorry, you do not have access to this list']);      
     }
 
     /**

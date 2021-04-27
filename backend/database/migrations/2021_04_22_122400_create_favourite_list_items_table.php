@@ -19,7 +19,7 @@ class CreateFavouriteListItemsTable extends Migration
             $table->longText('recipe_image');
             $table->longText('recipe_label');
             $table->longText('recipe_ingredientlines');
-            $table->foreignId('favourite_list_id')->constrained();
+            $table->foreignId('favourite_list_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
