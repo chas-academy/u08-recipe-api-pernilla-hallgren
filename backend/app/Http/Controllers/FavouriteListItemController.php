@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FavouriteList;
 use App\Models\FavouriteListItem;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,14 @@ class FavouriteListItemController extends Controller
      */
     public function store(Request $request)
     {
+        $favouriteList = FavouriteList::find($request->favourite_list_id);
+
+        if($favouriteList->favouriteListItem()->where('recipe_detail_id', $request->recipe_detail_id)->get()->count() !== 0) 
+            return response([
+                'message' => 'Recipe already in list ' . $favouriteList->name,
+                'error' => true    
+            ]);
+
         $favouriteListItem = new FavouriteListItem;
         $favouriteListItem->recipe_detail_id = $request->recipe_detail_id; 
         $favouriteListItem->recipe_image = $request->recipe_image; 
@@ -52,15 +61,12 @@ class FavouriteListItemController extends Controller
         $favouriteListItem->recipe_ingredientlines = $request->recipe_ingredientLines; 
         $favouriteListItem->favourite_list_id = $request->favourite_list_id; 
 
-        
-
         if ($favouriteListItem->save()) {
             return response([
-                'message' => 'Added to favourite list']);  
+                'message' => 'Added to favourite list ' . $favouriteList->name]);  
         } else {
             return response(['message' => 'Sorry can not add to favourite list']);
-        }
-               
+        }           
     }
 
     /**
@@ -72,7 +78,6 @@ class FavouriteListItemController extends Controller
     public function show(FavouriteListItem $favouriteListItem)
     {
         
-
 
     }
 
