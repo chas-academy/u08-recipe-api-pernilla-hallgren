@@ -7,47 +7,93 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<!-- Project -->
+<br />
+<p align="center">
+  <h2 align="center">u08-Recipe-API</h2>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+  <p align="center">
+    Pernilla Hällgren @ ChasAcademy 2021
+  </p>
+</p>
 
-## Learning Laravel
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+       <ul>
+        <li><a href="#goals">Goals</a></li>
+      </ul>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#code-of-conduct">Code of Conduct</a></li>
+    <li><a href="#security-vulnerabilities">Security Vulnerabilities</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## About The Project
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+I denna uppgift ska du bygga ett backend-API till recept-applikationen u07 och använda dig av det i frontend delen. 
 
-## Laravel Sponsors
+Den funktionalitet som ska läggas till är ett backend byggt som ett RESTful API i Laravel som kan hantera användare och deras receptlistor. Detta API ska sedan konsumeras av applikationen från u07 som nu behöver kunna hantera användarinloggning och CRUD på användarens egna receptlistor. API-data för recept skall fortfarande hämtas från externt API. 
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Goals
+Som användare ska man kunna göra följande (samma krav som föregående uppgift):
 
-### Premium Partners
+* Kunna skrolla genom förslag på recept/få fram en lista på recept genom sökning
+* Kunna filtrera förslagen av recept (minst 6 olika filter) på t ex
+  måltidstyp, allergener eller tillagningstid
+* Förrätt, huvudrätt eller dessert
+* Allergener och dietval (t.ex. gluten, nötter, vegetarian osv.)
+* Kunna klicka på ett recept för att se dess information (egen route)
+* Kunna spara receptet i en lista (redigera/ta bort från lista) (denna del skall nu kopplas till API:et)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+API-krav:
 
-## Contributing
+Som användare ska man kunna göra följande:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* Kunna registrera konto i API:et (skapa användare, logga in, logga ut)
+* Nyttjar JWT baserade tokens för kommunikation eller implementation av Laravel Sanctum för autentisering och auktorisering
+* Användare ska kunna spara listor på recept. Listan har som minimumkrav att innehålla:
+  - titel
+  - vilka recept som ingår
+* Användaren ska kunna lägga till en lista, läsa in en lista, ändra en lista och ta bort en lista
+* Samtliga listor måste vara knutna till en användare och får bara ändras/läsas av samma användare
+* Recept får endast förekomma en gång i en och samma lista, men samma recept kan förekomma i olika listor
+* Data för specifika recept ska fortfarande hämtas från externt API
+
+Nya frontend-krav:
+
+* Användaren ska kunna skapa användare, logga in och logga ut
+* Användaren ska kunna utföra CRUD på egna receptlistor
+
+### Built With
+
+This project was generated with: 
+[Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
+[Laravel](https://laravel.com) version 8.
+[Docker CLI](https://www.docker.com) version 3.3.1.
+[Bootstrap](https://getbootstrap.com/) 
+
+## Getting Started
+### Development Tools
+
+We used Docker to get started with this project visit: (https://www.docker.com/)
+For the token-based authentication with JWT we used this tutorial: (https://www.positronx.io/laravel-angular-token-based-authentication-with-jwt/)
+Postman was used to check the requests (https://www.postman.com/)
+
+### Development server 
+
+Run `./vendor/bin/sail up` for a dev server. 
 
 ## Code of Conduct
 
@@ -60,3 +106,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Contact
+
+Pernilla Hällgren - pernilla.hallgren@chasacademy.se
